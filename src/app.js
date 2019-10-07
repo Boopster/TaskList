@@ -5,27 +5,29 @@ import Vue from 'vue';
 document.addEventListener('DOMContentLoaded', () => {
 
     new Vue({
-      
+
       el: '#app',
       data: {
         tasks: [
-          {step: "Take instructions", isComplete: false},
-          {step: "Confirm identity", isComplete: false},
-          {step: "Confirm instructions", isComplete: false},
-          {step: "Issue Letter of Engagement", isComplete: false},
+          {step: "Take instructions", isCompleted: false, priority: 'high'},
+          {step: "Confirm identity", isCompleted: false, priority: 'high'},
+          {step: "Confirm instructions", isCompleted: false, priority: 'high'},
+          {step: "Issue Letter of Engagement", isCompleted: false, priority: 'high'},
       ],
-        newTask: ""
+        newTask: "",
+        priority: ""
       },
       methods:{
         saveNewTask: function(){
           this.tasks.push({
             step: this.newTask,
-            isComplete: false
+            isCompleted: false,
+            priority: this.priority
           });
           this.newTask="";
         },
         completeTask: function(index){
-          this.tasks[index].isComplete = true;
+          this.tasks[index].isCompleted = true;
         }
       }
 

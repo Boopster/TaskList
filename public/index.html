@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Task List</title>
+    <title>Transaction Task List</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <script src="js/bundle.js"></script>
   </head>
+
   <body>
+
     <div id="app">
-      
+
+      <h1>Transaction Task List</h1>
+
+      <form v-on:submit.prevent="saveNewTask">
+        <label for="new-task">Add a new task:</label>
+        <input id="new-task" type="text" v-model="newTask">
+        <input type="radio" name="priority" v-model="priority" value="high"> High
+        <input type="radio" name="priority" v-model=priority value="low"> Low
+        <input type="submit" value="Add Task">
+      </form>
+
+      <div v-for="(task, index) in tasks" v-bind:class="task.isCompleted? 'completed':'not-completed'">
+        <span>{{task.step}}</span>
+        <span v-if="task.isCompleted">Completed</span>
+        <button v-if="!task.isCompleted" v-on:click="completeTask(index)">Complete</button>
+      </div>
+
     </div>
+
   </body>
+
 </html>
